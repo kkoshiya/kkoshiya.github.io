@@ -68,7 +68,7 @@ let main = function (str, n = 5) {
     axios.get(str)
       .then(res => {
         let priceArray = []
-        let close = []
+        let close = [];
         var myJSON = JSON.stringify(res);
         var obj = JSON.parse(myJSON);
         x = obj.data.Data.Data;
@@ -79,12 +79,13 @@ let main = function (str, n = 5) {
           close.push(ele.close)
           day += 1;
         });
-        day = 1
+        day = 1;
+        let low = Math.min.apply(null, close);
         let movingAvg = movingAverage(close, 5) 
         var backtesterArr = close.map(function (e, i) {
           return [e, movingAvg[i]];
         });
-        let backtesterVals = backtester(backtesterArr)
+        let backtesterVals = backtester(backtesterArr);
         backtesterVals.forEach(el => {
           let hold = { label: day, y: el };
           vals.push(hold);
@@ -98,6 +99,9 @@ let main = function (str, n = 5) {
           toolTip: {
             shared: true
           },
+          axisY: {
+            minimum: low-200,
+          },
 
           data: [
             {
@@ -105,6 +109,7 @@ let main = function (str, n = 5) {
               type: "line",
               name: "Price",
               dataPoints: priceArray
+  
             },
             {
               type: 'line',
@@ -166,3 +171,4 @@ function movingAverage(arr, n = 5) {
   }
   return output;
 }
+
