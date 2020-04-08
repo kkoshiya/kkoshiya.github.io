@@ -1,6 +1,6 @@
 
 let days = '';
-let period = '365'
+let period = '365' //
 
 function myFunction() {
   var test = document.getElementById("search").value;
