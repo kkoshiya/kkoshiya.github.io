@@ -11,6 +11,7 @@ function myFunction() {
   window.onload = main(str);
 }
 
+// input functions
 function formFunction() {
   var test = document.getElementById("submit-test").value;
   var test2 = document.getElementById("submit-test2").value;
@@ -109,7 +110,13 @@ let main = function (str, n = 5) {
           axisY: {
             minimum: low-200,
           },
-
+          legend: {
+              display: true,
+              position: 'bottom',
+              labels: {
+                fontColor: "#000080",
+              }
+          },
           data: [
             {
               // Change type to "doughnut", "line", "splineArea", etc.
