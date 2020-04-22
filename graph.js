@@ -14,8 +14,10 @@ function myFunction() {
 // input functions
 function formFunction() {
   var test = document.getElementById("submit-test").value;
-  var test2 = document.getElementById("submit-test2").value;
-  
+  var period = parseInt(document.getElementById("submit-test2").value);
+  var variable = parseInt(document.getElementById("submit-test3").value);
+  const str = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=${period}&api_key=5b30e7d4179a96d32c653107c05339a18d32c3fe4be94a384ca914fb5fc048f3`
+  window.onload = main(str)
 }
 
 
@@ -89,7 +91,7 @@ let main = function (str, n = 5) {
         });
         day = 1;
         let low = Math.min.apply(null, close);
-        let movingAvg = movingAverage(close, 5) 
+        let movingAvg = movingAverage(close, n) 
         var backtesterArr = close.map(function (e, i) {
           return [e, movingAvg[i]];
         });
@@ -102,7 +104,7 @@ let main = function (str, n = 5) {
         var chart = new CanvasJS.Chart("chartContainer", {
           animationEnabled: true,
           title: {
-            text: `Bitcoin This Year (change: ${Math.floor(priceArray[priceArray.length - 1].y - priceArray[0].y)})`
+            text: `Bitcoin (change: ${Math.floor(priceArray[priceArray.length - 1].y - priceArray[0].y)})`
           }, 
           toolTip: {
             shared: true
