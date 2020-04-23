@@ -8,15 +8,16 @@ function myFunction() {
   period = test;
   const str = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=${period}&api_key=5b30e7d4179a96d32c653107c05339a18d32c3fe4be94a384ca914fb5fc048f3`
   window.onload = main(str);
+  debugger
 }
 
 function formFunction() {
   var test = document.getElementById("submit-test").value;
-  var period = parseInt(document.getElementById("submit-test2").value);
+  var period = document.getElementById("submit-test2").value;
   var variable = parseInt(document.getElementById("submit-test3").value);
   const str = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=${period}&api_key=5b30e7d4179a96d32c653107c05339a18d32c3fe4be94a384ca914fb5fc048f3`
-  debugger
   window.onload = main(str)
+  debugger
 }
 
 
