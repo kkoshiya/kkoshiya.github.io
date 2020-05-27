@@ -53,6 +53,7 @@ table {
 .body-container{
   text-align: center;
   /* position: relative; */
+  display: flex;
 }
 
 .chart-container {
@@ -136,6 +137,10 @@ body {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
+}
+
+.title {
+  color: white;
 }
 
 
