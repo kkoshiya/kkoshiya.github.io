@@ -82,7 +82,6 @@ table {
 
 #test {
   padding-top: 420px;
-
 }
 
 body {
@@ -141,6 +140,10 @@ body {
 
 .title {
   color: white;
+  position: absolute;
 }
 
+.functions {
+  border: 1px solid white
+}
 
