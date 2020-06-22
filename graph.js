@@ -16,8 +16,8 @@ function formFunction() {
   var period = document.getElementById("submit-test2").value;
   var variable = parseInt(document.getElementById("submit-test3").value);
   const str = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=${period}&api_key=5b30e7d4179a96d32c653107c05339a18d32c3fe4be94a384ca914fb5fc048f3`
-  window.onload = main(str)
-  debugger
+
+  window.onload = main(str, variable)
 }
 
 
@@ -91,10 +91,11 @@ let main = function (str, n = 5) {
         });
         day = 1;
         let low = Math.min.apply(null, close);
-        let movingAvg = movingAverage(close, 5) 
+        let movingAvg = movingAverage(close, n) 
         var backtesterArr = close.map(function (e, i) {
           return [e, movingAvg[i]];
         });
+        
         let backtesterVals = backtester(backtesterArr);
         backtesterVals.forEach(el => {
           let hold = { label: day, y: el };

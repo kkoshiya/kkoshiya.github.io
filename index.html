@@ -11,18 +11,17 @@
   <title>OverFit</title>
 </head>
 
-<body>
+<body>  
   
   
-  
-  <!-- <img id='background' src="https://media2.giphy.com/media/Q9aBxHn9fTqKs/giphy.gif" > -->
-  
-  <div style="display: inline-block;">
-    <h1 class="title">Welcome to Overfit</h1>\
+  <div class="title-container">
+    <h1 class="title">Welcome to Overfit</h1>
   </div>
+
   <div class="body-container">
     <div class="chart-container">
        <div id="chartContainer"></div>
+       <img class="outside" src="https://st3.depositphotos.com/1005097/19129/v/600/depositphotos_191295500-stock-video-lets-get-started-word-in.jpg">
     </div>
 
     <div class="functions">
@@ -34,28 +33,26 @@
           <button class="button" type="button" data-handler="b_two">Year</button>
         </div>
       </div>
-      <div>
-        <input id="search" placeholder="Input Days"></input>
+      <div class='input-days'>
+        <input id="search" placeholder="Input Days (Max 1000)"></input>
         <button value='send' id="submit" onclick="myFunction()">View Period (Days)</button>
       </div>
-      <div>
-        <form action="">
-          <input id="submit-test" type="text" placeholder="Stategy">
-          <input id="submit-test2" type="text" placeholder="Period">
-          <input id="submit-test3" type="text" placeholder="Variable">
-          <button onclick="formFunction()">Main Test </button>
-        </form>
+      <div class="main-inputs">
+        <input id="submit-test" type="text" placeholder="Stategy">
+        <input id="submit-test2" type="text" placeholder="Period">
+        <input id="submit-test3" type="text" placeholder="Variable">
+        <button value='send' id="submit" onclick="formFunction()">Main Test</button>
       </div>
       
-    </div>
-    <!-- <div class="dropdown">
-      <button class="dropbtn">Dropdown</button>
-      <div class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
+      <!-- <div class="dropdown">
+        <button class="dropbtn">Dropdown</button>
+        <div class="dropdown-content">
+          <a>Moving Average</a>
+          <a>RSI</a>
+          <a>Bollinger Bands</a>
+        </div> -->
       </div>
-    </div> -->
+    </div>
 
   </div>
 

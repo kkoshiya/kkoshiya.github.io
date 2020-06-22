@@ -54,12 +54,14 @@ table {
   text-align: center;
   /* position: relative; */
   display: flex;
+  margin-left: 4%;
 }
 
 .chart-container {
   width: 50%;
   display: inline-block;
-  padding-top: 10%;
+  margin-top: 7%;
+  /* border: 5px solid lightgreen; */
 }
 
 
@@ -68,6 +70,14 @@ table {
   z-index: -1;
   width: 100%;
   height: 100%;
+}
+
+
+.title-container {
+  text-align: center; 
+  padding-bottom: 15px; 
+  padding-top: 15px;
+  border-bottom: 5px solid white;
 }
 
 
@@ -81,13 +91,21 @@ table {
 }
 
 #test {
-  padding-top: 420px;
+  /* padding-top: 1%; */
+  padding-bottom: 2%;
+  border-bottom: solid lightgray 2px;
+
+}
+
+.class{
+  z-index: 1;
 }
 
 body {
   position: relative;
   background-image: url('https://media2.giphy.com/media/Q9aBxHn9fTqKs/giphy.gif');
-  /* background-image: url('https://thumbs.gfycat.com/YellowishDimwittedBasenji-small.gif'); */
+  /* margin-left: 8%; */
+
 }
 
 
@@ -140,10 +158,50 @@ body {
 
 .title {
   color: white;
-  position: absolute;
+  /* position: absolute; */
+  display: inline-block;
+  font-size: 48px;
 }
 
 .functions {
-  border: 1px solid white
+  /* border: 1px solid white; */
+  margin-top: 3%;
+  margin-left: 3%;
+  height: 500px;
+  background-color: white;
+  padding: 10px;
+  border: 5px solid green;
+}
+
+.button {
+  background-color: green;
+  color: white;
+  height: 30px;
+  width: 150px;
+  font-size: 16px;
+}
+
+.input-days {
+  padding-top: 2%;
+  align-items: center;
+  padding-bottom: 2%;
+  border-bottom: lightgray solid 2px;
+}
+
+#search {
+  height: 20px;
+  width: 380px;
+  border: 1px, solid, darkgreen;
+}
+
+#submit {
+  background-color: darkgreen;
+  color: white;
+  height: 30px;
+  width: 150px;
+}
+
+.main-inputs {
+  padding-top: 2%;
 }
 
