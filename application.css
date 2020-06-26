@@ -167,6 +167,7 @@ body {
   /* border: 1px solid white; */
   margin-top: 3%;
   margin-left: 3%;
+  margin-right: 2%;
   height: 500px;
   background-color: white;
   padding: 10px;
@@ -190,7 +191,13 @@ body {
 
 #search {
   height: 20px;
-  width: 380px;
+  width: 280px;
+  border: 1px, solid, darkgreen;
+}
+
+#coin {
+  height: 20px;
+  width: 180px;
   border: 1px, solid, darkgreen;
 }
 
@@ -203,5 +210,17 @@ body {
 
 .main-inputs {
   padding-top: 2%;
+  padding-bottom: 2%;
+  border-bottom: 2px solid lightgray;
 }
 
+.guide > h1 {
+  padding-top: 2%;
+  padding-bottom: 2%;
+  font-size: 24px;
+}
+
+.guide-list > li{
+  align-items: left;
+  
+}
