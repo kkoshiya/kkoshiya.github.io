@@ -41,18 +41,21 @@
       </div>
       <div class="main-inputs">
         <input id="submit-test" type="text" placeholder="Stategy">
+        <div class="dropdown">
+          <button class="dropbtn" onmouseover="dropdown()" >Dropdown</button>
+          <div class="dropdown-content">
+            <a>Moving Average</a>
+            <a>RSI</a>
+            <a>Bollinger Bands</a>
+          </div>
+        </div>
+        </input>
+
         <input id="submit-test2" type="text" placeholder="Period">
         <input id="submit-test3" type="text" placeholder="Variable">
         <button value='send' id="submit" onclick="formFunction()">Main Test</button>
       </div>
       
-      <!-- <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-          <a>Moving Average</a>
-          <a>RSI</a>
-          <a>Bollinger Bands</a>
-        </div> -->
       <div class='guide'>
         <h1>How it Works</h1>
         <div class='guide-list'>
@@ -64,7 +67,7 @@
               as a specific Cryptocurrencies 
             </li>
             <br>
-            <li>If the Backtester finishes above the Price line, then you can see that your selcted strategy would have done better than nothing.
+            <li>If the Backtester finishes above the Price line, then you can see that your selcted strategy would have done better than nothing. 
             </li>
 
           </div>

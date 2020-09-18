@@ -20,6 +20,8 @@ function formFunction() {
 }
 
 
+
+
 document.addEventListener("DOMContentLoaded", function () {
   function one(e) {
     period = '31';
