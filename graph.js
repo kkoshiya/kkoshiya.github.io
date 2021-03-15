@@ -18,7 +18,7 @@ function formFunction() {
 
   window.onload = main(str, variable)
 }
-
+ 
 
 
 
