@@ -222,5 +222,26 @@ body {
 
 .guide-list > li{
   align-items: left;
-  
+}
+
+.guide {
+  padding-bottom: 2%;
+  border-bottom: 2px solid lightgray;
+}
+
+.dropbtn{
+  background-color: darkgreen;
+  color: white;
+  height: 30px;
+  width: 150px;
+}
+
+.new-feature-container {
+  padding-top: 2%;
+  display: inline-block;
+}
+
+.new-feature-body{
+    align-items: center;
+
 }
