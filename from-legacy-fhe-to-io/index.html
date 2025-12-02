@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Legacy FHE to IO - Taproot's Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="blog-post-container">
+    <nav class="blog-nav">
+      <a href="/">← Back to Blog</a>
+    </nav>
+    
+    <article class="blog-post">
+      <h1 class="blog-post-title">From Legacy FHE to IO</h1>
+      
+      <div class="blog-content">
+        <p><strong>TLDR:</strong> Does Root iO obsolete legacy FHE Co-Processors? According to many, we should salvage/convert existing legacy fhe infrastructure to prepare for iO. In the meantime some will still use fhe for shared private state construction, even if it requires a threshold decryption network. I suspect many people (such as Vialitk) won't accept fhe unless iO vouches. How can something like FHE be considered the 'holy grail' of cryptography if it requires an active threshold decryption network dependency (t-of-n). I think that title rightfully belongs to iO as it's theoretically more performant and secure.</p>
+
+        <p>I initially learned about FHE back in 2023.. At the time I was working on some EVM copy pasta game when I wanted to figure out how to make a simple combat engine. I was getting to a point where I was fairly satisfied with the initial PvE mechanics and needed to move to PVP. I went to PSE at the time and got a template, I think at the time it might've been the Sudoku example. After completing the demo, I asked how it could be used for encrypting an input (think rock paper scissors) but that wasn't public so the player going second can't backrun. Essentially the best method was an interactive commit-reveal scheme. It was at this moment I began to think that maybe zk wasn't the privacy end game. I began to Google around and eventually I came across Sunscreen and their FHE docs. I recognized them for the ETH NYC discord or something, I think they were a sponsor. Actually big bro Remi Gai (founder Inco) was the first person to talk to me about FHE. After this he guided me through how to create a simple RPS app using Zama's fhevm. I was amazed, it seemed like exactly what I was looking for. What if I could just encrypt a uintX in solidity and add, mul etc. After getting a finalist for our Mafia game app, I began working for Fhenix for about a year and a half. Eventually I ended up leaving Fhenix to work on an FHE coprocessor for the SVM. Solana seemed like the next logical step and in some ways seemed better for a pointer based system using tfhe-rs.</p>
+
+        <p>To me this is the question I've been thinking about for the past few weeks. DevCon 2025 was a good time, I mean overall it was nice to see friends and see what new stuff is going on in privacy. For Eth Global the boys and I developed OpenIo, the world's first Indistinguishable/Ideal Obfuscation coprocessor. I admit, it was a bit of a LARP to a degree but hey.. some of the stuff was actually pretty creative imo.</p>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
+
