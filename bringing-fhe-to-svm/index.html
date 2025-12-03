@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bringing FHE to the SVM - Taproot's Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <div class="blog-post-container">
+    <nav class="blog-nav">
+      <a href="/">← Back to Blog</a>
+    </nav>
+
+    <article class="blog-post">
+      <h1 class="blog-post-title">Bringing Fully Homomorphic Encryption to the Solana Virtual Machine</h1>
+
+      <div class="blog-content">
+        <p><strong>TLDR:</strong> The goal of the project is to use symbolic execution to add FHE operations to the SVM. This addresses the demand for a shared private state. This may sound similar to using a form of multiparty computation (MPC), however there are a few differences. Primarily, FHE allows for non-interactive operations to state, only requiring communication overhead for decryption related requests. MPC will always have some sort of interaction/communication bottleneck, which for things like threshold decryption can be a feature and not a bug. FHE on the other hand is primarily bound by computational costs. These costs, while high today, are estimated to be brought down by orders of magnitude in the coming years. Time will tell, but it could be interesting to explore FHE on Solana—if nothing else as another approach to privacy on a growing network.</p>
+
+        <p><strong>How:</strong> The idea here is to create an off-chain server that handles FHE operations symbolically on the SVM. Essentially when an on-chain action is needed, an event will be emitted and organized via a relayer where it then will be forwarded to the FHE backend where the encryption, FHE operations, and decryption requests are handled. The goal is to build a generalized FHE coprocessor that is native to the SVM, ideally including a wide range of operations, different FHE schemes, and threshold decryption. Next steps include on-chain verification. Right now my primary objective is building a proof of concept.</p>
+
+        <p>Here is a sample walk-through of how the deposit flow works. First the user will call the deposit function to deposit a certain amount of lamports into the program. This will create a mapping from the user's address to a ciphertext that represents their lamport value (down the road this can also be used for SPL tokens such as USDC). Next the TS listener/relayer will pick up the event and forward the request to the Rust server. The Rust server will then use the FHE public key to encrypt the corresponding ciphertext and save it to the database.</p>
+
+        <p>The following is a more complex example, since we need to request a valid ciphertext from the server before we are able to perform the transfer. This flow will be similar for any function that requires a ciphertext as an input. Down the road the idea will be to use a zero knowledge proof to verify the ciphertext is valid without revealing any information about the plaintext, however for now we will mock this via a POST request to the server. Say a user wants to transfer 1 of their deposited SOL—they will first need to request a ciphertext of the encrypted lamport value. From there, they will be given a pointer that they will use as an input to the transfer function (this is abstracted from the user). From there the flow is similar to the deposit example above.</p>
+
+        <p><strong>Solana privacy space:</strong> So at a high level the privacy scene on the SVM isn’t as saturated as the EVM world. I think there is a demand for a user friendly service similar to Railgun or Tornado Cash. As far as I can tell, it appears that the main privacy project on Solana is Arcium. They are taking the MPC approach in order to add the shared private state compute directly to the programs themselves via a separate DSL for writing the MPC circuits. After speaking with the team in Denver, my understanding is that they are making solid progress on bringing privacy to the mainstream. I believe they will release more updates this year—a cool project overall.</p>
+
+        <p>There is also another interesting approach by the Solana Foundation to use ElGamal, a form of partial homomorphic encryption (with zk for valid transfer requests) to handle private transfers. This approach seems practical to me given that you may not need FHE for all transfers—in many cases, partial homomorphism should be fine and seem more efficient. I’m not sure how practical this approach is for general operations that need to persist, so the niche for FHE appears unfilled.</p>
+
+        <p>To me the main thing that I want to explore is user and project based integrations. Take the approach of targeting use cases that already have an established product market fit, rather than trying to reinvent the wheel. The lowest hanging fruit would probably be some sort of transaction confidentiality. Simply put, something that would allow users to transfer Solana and stablecoins from one pubkey to another, without revealing the transfer amount. After that a mechanism to obfuscate which account is sent to which account could be built. Following the approach that other FHE coprocessors have taken in the EVM space (such as Fhenix or Zama), general operations for 8-256 bit euints (encrypted unsigned integers of arbitrary bit length) can be added with on-chain access control.</p>
+
+        <p><strong>Down the road:</strong> A more long term goal is to eventually integrate directly with AI and the growing agent economy. From handling encrypted queries, inter-agent communication, inferences and training, to potential lower level implementations for auction consensus mechanisms to fulfill AI work, there is still a lot to be explored. There also appears to be a niche that can be filled in the FHE space as a whole, as many new projects are coming up with their own novel FHE schemes/approaches who boast impressive claimed improvements on existing, more common libraries such as TFHE-rs. However it’s a little hard to evaluate, as configuring these libraries with some sort of general execution interface is a bottleneck. Basically it’s cool to be able to do crazy metrics in an isolated environment, but connecting these to more common patterns (swaps, AMMs, etc.) could prove as a more functional benchmarking—as the FHE market grows, market evaluation methods need to evolve as well.</p>
+
+        <p>Sometimes I like to think of this as a general framework for FHE, kind of like how common agent frameworks allow you the option to use multi-models, database systems, and custom tool integration. I believe that there will be a niche for the same sort of architecture for privacy/FHE. Imagine a privacy framework that allows users to choose which scheme or schemes they want to use, and which threshold network they want. To me the future is pretty exciting: as we enter the dawn of the agentic revolution, privacy demand will increase as well. The data wars are coming and in order to avoid being automated, cloned, or farmed, users may want to consider encrypting as much of their data as possible in order to maintain sovereignty and potentially delay the inevitable automation of their market usefulness. The mantra is simple—optimize for putting real resources (time/money) into the user’s pocket (as quietly as possible) and minimize friction, mostly switching friction.</p>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.toggle('light-mode', currentTheme === 'light');
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+    });
+  </script>
+</body>
+</html>
