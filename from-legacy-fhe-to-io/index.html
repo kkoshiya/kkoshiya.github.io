@@ -3,17 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>From Legacy FHE to IO - Taproot's Blog</title>
+  <title>From Legacy FHE to iO - Taproot's Blog</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
   <div class="blog-post-container">
     <nav class="blog-nav">
       <a href="/">← Back to Blog</a>
     </nav>
     
     <article class="blog-post">
-      <h1 class="blog-post-title">From Legacy FHE to IO</h1>
+      <h1 class="blog-post-title">From Legacy FHE to iO</h1>
       
       <div class="blog-content">
         <p><strong>TLDR:</strong> Does Root iO obsolete legacy FHE Co-Processors? According to many, we should salvage/convert existing legacy fhe infrastructure to prepare for iO. In the meantime some will still use fhe for shared private state construction, even if it requires a threshold decryption network. I suspect many people (such as Vialitk) won't accept fhe unless iO vouches. How can something like FHE be considered the 'holy grail' of cryptography if it requires an active threshold decryption network dependency (t-of-n). I think that title rightfully belongs to iO as it's theoretically more performant and secure.</p>
@@ -24,6 +40,22 @@
       </div>
     </article>
   </div>
+  
+  <script>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.toggle('light-mode', currentTheme === 'light');
+    
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+    });
+  </script>
 </body>
 </html>
 

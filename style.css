@@ -10,6 +10,12 @@ body {
   color: #fff;
   min-height: 100vh;
   padding: 2rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.light-mode {
+  background-color: #f5f5f5;
+  color: #333;
 }
 
 .container {
@@ -82,10 +88,20 @@ body {
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
+body.light-mode .list-item {
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .list-item:hover {
   transform: translateX(5px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .list-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .list-item a {
@@ -106,6 +122,73 @@ body {
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+body.light-mode .article-date {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+body.light-mode .theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
+  color: #10A7AF;
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.moon-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.sun-icon {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+body.light-mode .moon-icon {
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+
+body.light-mode .sun-icon {
+  opacity: 1;
+  transform: rotate(0deg);
 }
 
 /* Blog post page styles */
@@ -137,6 +220,13 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+body.light-mode .blog-post {
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .blog-post-title {
@@ -151,6 +241,11 @@ body {
   line-height: 1.8;
   font-size: 1.1rem;
   color: #fff;
+  transition: color 0.3s ease;
+}
+
+body.light-mode .blog-content {
+  color: #333;
 }
 
 .blog-content p {
