@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escaping Hedonism - Taproot's Blog</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+  </button>
+
+  <div class="blog-post-container">
+    <nav class="blog-nav">
+      <a href="/">← Back to Blog</a>
+    </nav>
+
+    <article class="blog-post">
+      <h1 class="blog-post-title">Escaping Hedonism</h1>
+
+      <div class="blog-content">
+        <p>I kind of don’t really understand when people of my generation complain about the era that we are young adults in. I get parts of covid were p gay, but I mean we had a lot of chances to get free monies. I remember at the time I was just splitting a room in Ann Arbor with my ex-gf. Just spent time in bed with her mostly. When she went to go practice I would give her the room and have one of the boys pick me up. Then we just kinda drink, vape, smoke, get food, hoop, watch tv etc. Then idk I guess I bought a decent amount of crypto at the right time and my big brain high school friend started a fund and I invested early. Since then I never really had to work, but I mean I’m far from rich.</p>
+
+        <p>Now I mean I remember being in Ko Samui this summer, giving zero fucks. I was unemployed. I would wake up and do degenerate ass shit. I recall some days I would just wake up and ride my bike to the cafe. Then just grab a j or two and head to the beach. Just basking in the ocean while high as a kite, life is just so mad chill sometimes. For me, sometimes I wonder why I don’t just go back and live chill like that. To me we live in the greatest era of all time. What other point in time can someone just figure out a way to travel the world in a matter of hours. Seriously, like you can get from one spot to another in under 24 hours, usually it’s faster. And in some ways we are kinda post work, I mean to a degree. Yeah there’s always some fucker that does less and has more, but what kind of sad sack mother fucker do you gotta be salty about that shit. I feel like in the future things will be a lot more efficient and shit sure, but we kinda live in this in between time right now. Right on the exponential tech curve. Remember in school when teach be like ‘and these fuckers went from candles and shitting outside to nukes in a life time’ - think about how that era will be for us.</p>
+
+        <p>I really struggle with trying not to be a hedonistic lazy fuck. I mean I think growing up with some of the voices in my head or whatever they call them these days, I just got really good and coping. And now that I’m an adult, I think I just got way too good at convincing myself that we can just be chill. Idk I see my friends and family back in the bay being like normal ass human beings. Like they are getting married or engaged or whatever, converting stock options into homes type shit. I mean look, I'm thankful for the life I have. Part of me wants to stay a kid at heart.</p>
+
+        <p>Sometimes it feels hard to not see life as a vacation. I have these random tweets about how adult life feels like being a kid on summer vacation, but it’s better because you have more freedom. Some will say that it takes a certain amount of money. And I get that, but I think really there’s always a way to find a way in life. If you can bum a couch, even for a night it can make a pivot. The universe will provide to you what you need, if you come in good faith. I think part of this good faith means that one must not ask for more than they need. I don’t want to say that it’s just a pure greed thing, cuz I think it’s really a multifaceted issue. I like to think in longer term karmic cycles.</p>
+      </div>
+    </article>
+  </div>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    body.classList.toggle('light-mode', currentTheme === 'light');
+
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
+      localStorage.setItem('theme', theme);
+    });
+  </script>
+</body>
+</html>
+
