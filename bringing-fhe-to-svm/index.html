@@ -5,24 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bringing FHE to the SVM - Taproot's Blog</title>
   <link rel="stylesheet" href="../style.css">
+  <script>
+    // Apply saved color scheme before first paint to avoid a flash on navigation
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem('scheme'));
+        if (!s && localStorage.getItem('theme') === 'light') {
+          s = { bg: '#ffffff', text: '#000000', accent: '#000000', dark: false };
+        }
+        if (!s || !s.bg) return;
+        var base = s.dark ? '255, 255, 255' : '0, 0, 0';
+        var o = s.dark
+          ? { card: '0.05', border: '0.1', hover: '0.1', date: '0.6', cBg: '0.1', cBorder: '0.2', cHover: '0.15' }
+          : { card: '0.03', border: '0.1', hover: '0.05', date: '0.6', cBg: '0.05', cBorder: '0.1', cHover: '0.1' };
+        var r = document.documentElement.style;
+        r.setProperty('--bg', s.bg);
+        r.setProperty('--text', s.text);
+        r.setProperty('--accent', s.accent);
+        r.setProperty('--accent-dim', s.accent);
+        r.setProperty('--card-bg', 'rgba(' + base + ', ' + o.card + ')');
+        r.setProperty('--card-border', 'rgba(' + base + ', ' + o.border + ')');
+        r.setProperty('--card-bg-hover', 'rgba(' + base + ', ' + o.hover + ')');
+        r.setProperty('--date', 'rgba(' + base + ', ' + o.date + ')');
+        r.setProperty('--control-bg', 'rgba(' + base + ', ' + o.cBg + ')');
+        r.setProperty('--control-border', 'rgba(' + base + ', ' + o.cBorder + ')');
+        r.setProperty('--control-bg-hover', 'rgba(' + base + ', ' + o.cHover + ')');
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <circle cx="12" cy="12" r="5"></circle>
-      <line x1="12" y1="1" x2="12" y2="3"></line>
-      <line x1="12" y1="21" x2="12" y2="23"></line>
-      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-      <line x1="1" y1="12" x2="3" y2="12"></line>
-      <line x1="21" y1="12" x2="23" y2="12"></line>
-      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-    </svg>
-    <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-    </svg>
-  </button>
 
   <div class="blog-post-container">
     <nav class="blog-nav">
@@ -54,18 +66,7 @@
     </article>
   </div>
 
-  <script>
-    const themeToggle = document.getElementById('themeToggle');
-    const body = document.body;
-    const currentTheme = localStorage.getItem('theme') || 'dark';
-    body.classList.toggle('light-mode', currentTheme === 'light');
-
-    themeToggle.addEventListener('click', () => {
-      body.classList.toggle('light-mode');
-      const theme = body.classList.contains('light-mode') ? 'light' : 'dark';
-      localStorage.setItem('theme', theme);
-    });
-  </script>
+  <script src="../theme.js"></script>
 </body>
 </html>
 
